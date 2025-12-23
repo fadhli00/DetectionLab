@@ -5,11 +5,11 @@
 Proxmox + pfSense + Splunk
 
 ## 📌 Project Phases
-- [Phase 1 — Build the Lab Foundation](#phase-1--build-the-lab-foundation)
-- [Phase 2 — Centralized Logging & Visibility](#phase-2--centralized-logging--visibility)
-- [Phase 3 — Detection & Alerting](#phase-3--detection--alerting)
-- [Phase 4 — Attack Simulation](#phase-4--attack-simulation)
-- [Phase 5 — Incident Investigation](#phase-5--incident-investigation)
+- [Phase 1 — Build the Lab Foundation](phase-1/README.md)
+- [Phase 2 — Centralized Logging & Visibility](phase-2/README.md)
+- [Phase 3 — Detection & Alerting](phase-3/README.md)
+- [Phase 4 — Attack Simulation](phase-4/README.md)
+- [Phase 5 — Incident Investigation](phase-5/README.md)
 
 
 ## 🔰 Objective
