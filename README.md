@@ -1,7 +1,8 @@
 # DAY 1 — Homelab Segmented Network  
 **Proxmox + pfSense + Splunk**
 
-(PIC1.jpg)
+![Network Diagram](PIC1.jpg)
+
 
 ## 🧭 Introduction
 
