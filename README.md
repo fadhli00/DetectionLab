@@ -1,4 +1,16 @@
-# Proxmox Homelab — Phase 1
+# Proxmox Homelab 
+
+# Homelab — Segmented Network & Security Lab
+
+Proxmox + pfSense + Splunk
+
+## 📌 Project Phases
+- [Phase 1 — Build the Lab Foundation](#phase-1--build-the-lab-foundation)
+- [Phase 2 — Centralized Logging & Visibility](#phase-2--centralized-logging--visibility)
+- [Phase 3 — Detection & Alerting](#phase-3--detection--alerting)
+- [Phase 4 — Attack Simulation](#phase-4--attack-simulation)
+- [Phase 5 — Incident Investigation](#phase-5--incident-investigation)
+
 
 ## 🔰 Objective
 Setup Proxmox host and basic VM layout.
