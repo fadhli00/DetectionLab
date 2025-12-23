@@ -1,6 +1,8 @@
 # DAY 1 — Homelab Segmented Network  
 **Proxmox + pfSense + Splunk**
 
+(PIC1.png)
+
 ## 🧭 Introduction
 
 This homelab started as a simple rebuild, but quickly evolved into a hands-on environment for practicing **real-world network segmentation, firewall enforcement, and centralized logging**.
