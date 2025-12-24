@@ -39,24 +39,21 @@ Advanced features are introduced progressively across project phases.
 
 Each phase is documented separately for clarity and modular learning:
 
-- 🔹 **[Phase 1 — Build the Lab Foundation](phase-1/README.md)**  
-  Proxmox networking, pfSense setup, and segmented LAN design.
+## 🧩 Project Phases
 
-- 🔹 **[Phase 2 — Centralized Logging & Visibility](phase-2/README.md)**  
-  Forwarding logs from all segments into Splunk.
+Each part of this project is documented separately to keep the structure clear, focused, and easy to follow.
 
-- 🔹 **[Phase 3 — Detection & Alerting](phase-3/README.md)**  
-  Creating detections, alerts, and dashboards based on log data.
+- 🔹 **[Part 1 — Network Design & Topology](part-1/README.md)**  
+  High-level network architecture, segmentation design, and topology overview.
 
-- 🔹 **[Phase 4 — Attack Simulation](phase-4/README.md)**  
-  Generating suspicious and malicious activity within the lab.
+- 🔹 **[Part 2 — Gather Materials](part-2/README.md)**  
+  Capturing network diagrams, screenshots, and technical notes before formal documentation.
 
-- 🔹 **[Phase 5 — Incident Investigation](phase-5/README.md)**  
-  Investigating events and correlating logs like a SOC analyst.
+- 🔹 **[Part 3 — Security & Centralized Logging](part-3/README.md)**  
+  Firewall segmentation rules, log forwarding, and centralized visibility using Splunk.
 
-  Tukar
-
-  Part 1: Apa & kenapa projek Part 2: Design & topology Part 3: Build process Part 4: Security & logging Part 5: Outcome & next steps
+- 🔹 **[Part 4 — Outcomes & Next Steps](part-4/README.md)**  
+  Project results, lessons learned, challenges encountered, and future enhancements.
 
 ---
 
