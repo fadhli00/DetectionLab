@@ -46,13 +46,13 @@ Each part of this project is documented separately to keep the structure clear, 
 🔹 **[Part 1 — Network Design & Topology](phase-1/README.md)**  
   High-level network architecture, segmentation design, and topology overview.
 
-🔹 **[Part 2 — Gather Materials](part-2/README.md)**  
+🔹 **[Part 2 — Gather Materials](phase-2/README.md)**  
   Capturing network diagrams, screenshots, and technical notes before formal documentation.
 
-🔹 **[Part 3 — Security & Centralized Logging](part-3/README.md)**  
+🔹 **[Part 3 — Security & Centralized Logging](phase-3/README.md)**  
   Firewall segmentation rules, log forwarding, and centralized visibility using Splunk.
 
-🔹 **[Part 4 — Outcomes & Next Steps](part-4/README.md)**  
+🔹 **[Part 4 — Outcomes & Next Steps](phase-4/README.md)**  
   Project results, lessons learned, challenges encountered, and future enhancements.
 
 ---
