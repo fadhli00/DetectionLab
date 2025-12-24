@@ -43,7 +43,7 @@ Each phase is documented separately for clarity and modular learning:
 
 Each part of this project is documented separately to keep the structure clear, focused, and easy to follow.
 
-🔹 **[Part 1 — Network Design & Topology](part-1/README.md)**  
+🔹 **[Part 1 — Network Design & Topology](phase-1/README.md)**  
   High-level network architecture, segmentation design, and topology overview.
 
 🔹 **[Part 2 — Gather Materials](part-2/README.md)**  
