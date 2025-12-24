@@ -1,103 +1,111 @@
-## 🔐 Part 3 — Security & Centralized Logging
+## 🔐 Part 4 — Security & Centralized Logging
 
-Screenshot Checklist (Quick Reference)
-
-📸 pfSense firewall rules (blocking & allow-to-Splunk)
-📸 pfSense interface rules per LAN
-📸 Splunk listening port configuration
-📸 Splunk receiving logs from LAN1 & LAN2
-
-This phase focuses on enforcing **network security controls** and establishing **centralized visibility** across the entire lab.  
-Rather than allowing open communication between systems, the environment is intentionally locked down and monitored, reflecting real-world security practices.
-
-Security is enforced through strict firewall segmentation, while visibility is achieved by forwarding logs from all network segments into a centralized Splunk server.
+This phase focuses on enforcing **strict network segmentation** and establishing **centralized visibility** across the entire lab.  
+The environment is designed with a **deny-by-default** mindset, where every allowed connection is intentional, documented, and logged.
 
 ---
 
-### 🔥 Network Segmentation & Firewall Strategy
+## 🔥 Firewall Segmentation Rules
 
-All internal networks are isolated by default.  
-Inter-LAN communication is denied unless explicitly required and justified.
+pfSense acts as the single enforcement point for all traffic entering or leaving each network segment.  
+By default, **no LAN is allowed to communicate with another LAN**.
 
-The segmentation strategy follows these principles:
+### Segmentation Policy Summary
 
-- Each LAN represents a separate security zone
-- No trust relationship exists between LANs
-- All access is controlled through explicit pfSense firewall rules
-- Internet access is allowed where necessary
-- Logging traffic is treated as a special, tightly controlled exception
-
-**Segmentation Rules Overview:**
-
-- ❌ LAN1 ↔ LAN2 — Blocked
-- ❌ LAN1 ↔ LAN3 — Blocked
-- ❌ LAN2 ↔ LAN3 — Blocked
-- ✅ LAN1 → Splunk (192.168.4.10)
-- ✅ LAN2 → Splunk (192.168.4.10)
-- ✅ LAN3 → Splunk (local logging)
+| Source | Destination | Action | Purpose |
+|------|-------------|--------|--------|
+| LAN1 | LAN2 | Block | Prevent lateral movement |
+| LAN1 | LAN3 | Block | Enforce isolation |
+| LAN2 | LAN1 | Block | Prevent lateral movement |
+| LAN2 | LAN3 | Block | Enforce isolation |
+| LAN3 | LAN1 | Block | Enforce isolation |
+| LAN3 | LAN2 | Block | Enforce isolation |
+| LAN1 | Internet | Allow | Normal outbound access |
+| LAN2 | Internet | Allow | Normal outbound access |
+| LAN3 | Internet | Allow | Updates & services |
 
 > 📸 **Screenshot Required:**  
-> - pfSense firewall rules showing inter-LAN blocking  
-> - pfSense rule allowing traffic to Splunk  
+> - pfSense firewall rules showing LAN-to-LAN blocking rules  
+> - Rule order clearly visible  
 
 ---
 
-### 📊 Centralized Logging Architecture
+### 🔓 Logging Exception Rules (Explicit Allow)
 
-To maintain visibility across isolated segments, all systems forward logs to a centralized Splunk server located in **LAN 3**.
+Logging traffic is the **only permitted inter-LAN communication**.
 
-Splunk acts as the central point for:
+| Source | Destination | Port | Action | Purpose |
+|------|-------------|------|--------|--------|
+| LAN1 | 192.168.4.10 | 9997 | Allow | Send logs to Splunk |
+| LAN2 | 192.168.4.10 | 9997 | Allow | Send logs to Splunk |
+| LAN3 | Local | N/A | Allow | Local log processing |
+
+Only the required destination and port are permitted.  
+No other services are exposed across network boundaries.
+
+> 📸 **Screenshot Required:**  
+> - pfSense rule allowing LAN1 → Splunk  
+> - pfSense rule allowing LAN2 → Splunk  
+
+---
+
+## 📊 Centralized Logging Architecture
+
+All systems forward logs to a **dedicated Splunk server located in LAN 3 (192.168.4.10)**.  
+This allows visibility across isolated environments without breaking segmentation.
+
+Splunk is responsible for:
 
 - Log ingestion
+- Indexing and storage
 - Event correlation
 - Detection and alerting (future phase)
-- Incident investigation
-
-This design ensures that even though systems are isolated, **security visibility remains centralized**.
 
 ---
 
-### 🔄 Log Flow Overview
+## 🔄 Log Flow Design
 
-The logging flow is designed to be simple, consistent, and controlled:
+The log flow is intentionally simple and controlled:
 
-- **LAN 1 (Linux systems)**  
-  Logs are forwarded via syslog or Splunk Universal Forwarder to Splunk.
+### Linux Systems (LAN 1)
+- System and application logs forwarded using syslog or Splunk Universal Forwarder
+- Destination: Splunk server (192.168.4.10:9997)
 
-- **LAN 2 (Windows systems)**  
-  Windows event logs are forwarded to Splunk using the Universal Forwarder.
+### Windows Systems (LAN 2)
+- Windows Event Logs forwarded using Splunk Universal Forwarder
+- Destination: Splunk server (192.168.4.10:9997)
 
-- **LAN 3 (Splunk server)**  
-  Receives logs locally and from other LANs.
-
-All logging traffic is explicitly permitted through the firewall and restricted to required ports only.
+### Splunk Server (LAN 3)
+- Receives logs locally
+- Receives logs from LAN 1 and LAN 2
+- Acts as the central analysis point
 
 > 📸 **Screenshot Required:**  
-> - Splunk input configuration (listening port enabled)  
-> - Splunk showing incoming events from multiple hosts  
+> - Splunk input configuration (port 9997 enabled)  
+> - Splunk showing events from multiple hosts  
 
 ---
 
-### 🔍 Security Visibility & Monitoring
+## 🔍 Security Visibility & Monitoring
 
-Centralized logging provides the ability to:
+With centralized logging in place, the lab enables:
 
-- Monitor traffic and system activity across all segments
-- Identify suspicious behavior
-- Validate firewall effectiveness
-- Correlate events during investigations
+- Validation of firewall rule effectiveness
+- Detection of unexpected traffic patterns
+- Cross-host event correlation
+- Investigation of simulated security incidents
 
-This phase lays the foundation for more advanced capabilities such as detection logic, alerts, and dashboards introduced in later phases.
+This phase establishes the groundwork for advanced detection and SOC-style workflows in later phases.
 
 ---
 
-### 🧠 Security Design Philosophy
+## 🧠 Security Design Principles
 
-- **Deny by default**
-- **Allow only what is required**
-- **Log everything that matters**
-- **Document the intent behind every rule**
+- Deny all inter-LAN traffic by default
+- Allow only specific, justified flows
+- Log and monitor all critical activity
+- Document the intent behind every firewall rule
 
-This approach ensures the lab remains secure, observable, and suitable for continuous testing and learning.
+This ensures the environment remains secure, observable, and easy to reason about.
 
 ---
