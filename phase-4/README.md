@@ -1,4 +1,4 @@
-## ✅ Part 5 — Outcomes & Next Steps
+## ✅ Part 4 — Outcomes & Next Steps
 
 This final section summarizes the results of the homelab project, key takeaways from the build, and planned improvements for future iterations.
 
