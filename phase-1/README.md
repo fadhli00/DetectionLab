@@ -1,5 +1,23 @@
 ## 🧩 Part 1 — Network Design & Topology
 
+
+### 🗺️ Topology Diagram
+
+## 🗺️ Network Topology Diagram
+
+<p align="center">
+  <img src="images/Homelab.drawio.png" alt="Homelab Network Topology" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 1: Segmented homelab network architecture using Proxmox, pfSense, and Splunk</em>
+</p>
+
+
+The diagram visually represents how Proxmox, pfSense, and the segmented LANs interact within the lab environment.
+
+---
+
 This homelab is designed around a **segmented network architecture** where each network segment is isolated by default and controlled through a central firewall. The goal is to mimic how networks are structured in real enterprise environments, rather than using a single flat network.
 
 At the core of the design is **pfSense**, acting as the central gateway responsible for routing, firewall enforcement, and traffic control between all network segments.
@@ -62,10 +80,4 @@ This design ensures strong isolation while still maintaining operational visibil
 
 ---
 
-### 🗺️ Topology Diagram
 
-> *(Insert network topology diagram here)*
-
-The diagram visually represents how Proxmox, pfSense, and the segmented LANs interact within the lab environment.
-
----
