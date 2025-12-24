@@ -54,6 +54,10 @@ Each phase is documented separately for clarity and modular learning:
 - 🔹 **[Phase 5 — Incident Investigation](phase-5/README.md)**  
   Investigating events and correlating logs like a SOC analyst.
 
+  Tukar
+
+  Part 1: Apa & kenapa projek Part 2: Design & topology Part 3: Build process Part 4: Security & logging Part 5: Outcome & next steps
+
 ---
 
 ## 🎯 Objectives
