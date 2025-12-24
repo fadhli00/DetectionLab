@@ -1,75 +1,79 @@
-## 🛠️ Part 3 — Build Process
+## ⭐ Phase 2 — Gather Materials (Before Writing Anything)
 
-This section documents the **implementation process** of the homelab, focusing on how the environment was built step by step.  
-The goal is not to provide exhaustive configuration commands, but to clearly explain **what was built, in what order, and why**.
+With the lab fully deployed and operational, this phase focuses on **capturing what already exists**.  
+Rather than rushing into documentation or publishing to GitHub, the priority here is to collect visuals and technical notes while the environment is still fresh, accurate, and unchanged.
 
-The build process is structured to ensure that the network foundation is stable before adding systems, security controls, and logging capabilities.
-
----
-
-### Phase 1 — Proxmox Network Foundation
-
-The lab begins with the setup of the Proxmox host and its network configuration.
-
-Key actions:
-- Created multiple Linux bridges to represent each network segment
-- Mapped each bridge to a dedicated LAN or WAN
-- Ensured network persistence across reboots
-- Verified internet connectivity through the WAN bridge
-
-This establishes a clean and modular virtualization layer where network segmentation starts at the hypervisor level.
+This phase serves as the **raw material collection stage**—everything gathered here will later be refined into clean documentation, diagrams, and structured write-ups.
 
 ---
 
-### Phase 2 — pfSense Deployment
+### ✅ Capture Key Screenshots
 
-pfSense is deployed as a virtual machine and configured as the **central firewall and router**.
+Screenshots are taken while the environment is still clean and stable.  
+These visuals help preserve the exact state of the lab and will later support explanations throughout the documentation.
 
-Key actions:
-- Assigned multiple network interfaces to pfSense
-- Mapped each interface to the appropriate Proxmox bridge
-- Configured IP addressing and gateways for each LAN
-- Enabled DHCP where appropriate
+Captured screenshots include:
 
-At this stage, pfSense becomes the single control point for all routing and security enforcement.
+- Proxmox bridge configuration
+- pfSense interface assignments
+- Firewall rules demonstrating network segmentation:
+  - WAN
+  - LAN
+  - OPT1
+  - OPT2
+  - OPT3
+- Virtual machines across all segments:
+  - LAN 1 — Linux systems
+  - LAN 2 — Windows Server and Windows client
+  - LAN 3 — Splunk server
+- VM list showing network placement
+- Splunk successfully receiving logs from multiple segments
 
----
-
-### Phase 3 — Internal System Deployment
-
-With the network and firewall in place, systems are deployed into their respective segments.
-
-Key actions:
-- Deployed Ubuntu systems in LAN 1 for baseline Linux testing
-- Deployed Windows Server and Windows client systems in LAN 2
-- Deployed a dedicated Splunk server in LAN 3
-- Verified connectivity to gateways and outbound internet access
-
-Each system is connected only to its intended network segment, maintaining isolation by design.
+These screenshots ensure that key design and security decisions are visually documented.
 
 ---
 
-### Phase 4 — Initial Validation
+### ✅ Collect Technical Notes
 
-Before moving into security controls and logging, basic validation is performed.
+Basic technical details are gathered in a simple text file or Word document.  
+The focus here is **accuracy, not polish**.
 
-Validation checks:
-- Gateway reachability from each LAN
-- Internet access from internal systems
-- Correct IP addressing and routing behavior
-- Isolation between LANs prior to rule tuning
+Collected notes include:
 
-This ensures the environment is stable and ready for security-focused configuration.
+#### Network Flow
+- WAN → Modem/Router → pfSense → Proxmox → Virtual Machines
 
----
+#### Proxmox Bridges
+- `vmbr0` — WAN  
+- `vmbr1` — LAN 1  
+- `vmbr2` — LAN 2  
+- `vmbr3` — LAN 3  
 
-### Build Philosophy
+#### pfSense Interfaces
+- WAN — DHCP from ISP  
+- OPT1 — 192.168.2.1  
+- OPT2 — 192.168.3.1  
+- OPT3 — 192.168.4.1  
 
-- Build **from the network outward**
-- Enforce segmentation early
-- Validate each layer before moving on
-- Keep configurations documented and reproducible
+#### Network Segments & VMs
+- **LAN 1:** 192.168.2.0/24 — Ubuntu VM  
+- **LAN 2:** 192.168.3.0/24 — Windows Server + Windows 10  
+- **LAN 3:** 192.168.4.0/24 — Splunk Server (192.168.4.10)  
 
-This approach mirrors how infrastructure is built and validated in real production environments.
+#### Segmentation Policy
+- LAN1, LAN2, and LAN3 are **fully isolated**
+- Allowed traffic:
+  - LAN1 → Splunk (192.168.4.10)
+  - LAN2 → Splunk (192.168.4.10)
+  - LAN3 → Splunk (local)
+- No direct LAN-to-LAN communication permitted
+
+#### Additional Notes
+- Virtual machine names and roles
+- Firewall rule intent and reasoning
+- Log flow direction across the environment
+
+These notes do not need to be perfect.  
+They simply need to exist, as they form the **foundation for future documentation, README sections, and GitHub content**.
 
 ---
