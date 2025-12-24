@@ -1,4 +1,4 @@
-## 🔐 Part 4 — Security & Centralized Logging
+## 🔐 Part 3 — Security & Centralized Logging
 
 This phase focuses on enforcing **strict network segmentation** and establishing **centralized visibility** across the entire lab.  
 The environment is designed with a **deny-by-default** mindset, where every allowed connection is intentional, documented, and logged.
