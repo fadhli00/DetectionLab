@@ -1,101 +1,93 @@
 # 🔐 Proxmox Homelab  
-## Homelab — Segmented Network & Security Lab
+## Homelab — Segmented Network & Security Lab  
 
-**Technology Stack:**  
-🧱 Proxmox • 🔥 pfSense • 📊 Splunk  
+**Technology Stack:** 🧱 Proxmox • 🔥 pfSense • 📊 Splunk  
 
-A hands-on security-focused homelab designed to simulate a **segmented enterprise network** with centralized logging, detection, and incident investigation capabilities.
-
----
-
-## 📖 Introduction
-
-This homelab started as a simple rebuild, but quickly evolved into a hands-on environment for practicing **real network segmentation, firewall control, and centralized logging** in a setup that closely resembles a production network.
-
-Instead of placing all systems into a single flat network, this lab is intentionally designed with **clear separation between systems based on their roles**—such as servers, user machines, and security tools. Each network segment exists for a specific purpose, and all communication between segments is explicitly controlled.  
-Firewalls are not just present for formality — **every rule exists for a reason**.
-
-At the same time, visibility is treated as a core requirement. Logs from multiple isolated segments flow into a centralized platform, allowing traffic visibility, anomaly detection, and event analysis similar to a real **Security Operations Center (SOC)**.
-
-The result is a lab that doesn’t just *work*, but **behaves like a real environment**—one that can be safely broken, tested, and analyzed to sharpen detection and investigation skills.
+A hands-on, security-first homelab built to **feel like a real enterprise environment**—not a flat test network. This lab focuses on segmentation, visibility, and investigation, giving me a safe place to break things, fix them, and actually learn how modern SOC environments behave.
 
 ---
 
-## 🧭 Project Scope
+## 📖 The Turning Point  
+
+This lab started during a quiet night shift early in my SOC journey. Between SIEM alerts, detections, and constantly changing rules, it felt like there was always more to learn—but nowhere safe to experiment.  
+
+That’s when I remembered an old, unused laptop sitting at home. Nothing fancy. Not powerful. Just *good enough*.  
+
+I installed Proxmox directly on bare metal, and what began as a simple setup quickly escalated. As I hit limitations, made mistakes, and redesigned things, the lab turned into a full-blown security playground—one that actually resembled a production environment instead of a throwaway setup.
+
+Rather than dumping everything into a single network, I segmented systems by role: servers, user endpoints, and security tools. Every firewall rule had to be justified. Every allowed connection was tested, broken, and refined. Visibility wasn’t optional either—logs from isolated networks were centralized for detection, analysis, and investigation.
+
+The result is a lab that doesn’t just *run*, but **behaves like a real environment**—one I can safely abuse, monitor, and use to sharpen my SOC detection and incident response skills.
+
+---
+
+## 🧭 Project Scope  
 
 This homelab focuses on:
-
-- Network segmentation and isolation
-- Firewall rule design and traffic control
-- Centralized logging and visibility
-- Detection, alerting, and investigation workflows
-- Clear documentation and reproducibility
+- Network segmentation and isolation  
+- Firewall rule design and traffic control  
+- Centralized logging and visibility  
+- Detection, alerting, and investigation workflows  
+- Clear documentation and reproducibility  
 
 Advanced features are introduced progressively across project phases.
 
 ---
 
-## 🧩 Project Phases
+## 🧩 Project Phases  
 
-Each phase is documented separately for clarity and modular learning:
-
-## 🧩 Project Phases
-
-Each part of this project is documented separately to keep the structure clear, focused, and easy to follow.
+Each part of the project is documented separately to keep things clean, modular, and easy to follow:
 
 🔹 **[Part 1 — Network Design & Topology](phase-1/README.md)**  
-  High-level network architecture, segmentation design, and topology overview.
+High-level architecture, segmentation strategy, and topology overview.
 
 🔹 **[Part 2 — Gather Materials](phase-2/README.md)**  
-  Capturing network diagrams, screenshots, and technical notes before formal documentation.
+Capturing diagrams, screenshots, and technical notes before formal documentation.
 
 🔹 **[Part 3 — Security & Centralized Logging](phase-3/README.md)**  
-  Firewall segmentation rules, log forwarding, and centralized visibility using Splunk.
+Firewall rules, log forwarding, and centralized visibility using Splunk.
 
 🔹 **[Part 4 — Outcomes & Next Steps](phase-4/README.md)**  
-  Project results, lessons learned, challenges encountered, and future enhancements.
+Lessons learned, challenges, results, and future improvements.
 
 ---
 
-## 🎯 Objectives
+## 🎯 Objectives  
 
-- Build a **multi-LAN segmented network** using a single firewall
-- Enforce **strict inter-network isolation**
-- Deploy Linux and Windows systems across isolated segments
-- Centralize logs using **Splunk**
-- Practice **realistic SOC-style detection and investigation**
-- Create a professional, portfolio-ready documentation
-
----
-
-## 🧪 Lab Environment (High-Level)
-
-| Component        | Purpose |
-|------------------|--------|
-| Proxmox          | Virtualization platform |
-| pfSense          | Central firewall & routing |
-| Ubuntu Servers   | Linux workloads & testing |
-| Windows Server   | Enterprise-style services |
-| Windows Client   | User endpoint simulation |
-| Splunk           | Centralized logging & analysis |
+- Build a **multi-LAN segmented network** behind a single firewall  
+- Enforce **strict inter-network isolation**  
+- Deploy Linux and Windows systems across isolated segments  
+- Centralize logs using **Splunk**  
+- Practice **realistic SOC-style detection and investigation**  
+- Produce clean, portfolio-ready documentation  
 
 ---
 
-## 🚀 Why This Lab?
+## 🧪 Lab Environment (High-Level)  
 
-This project is built to bridge the gap between theory and practice by providing:
-
-- Realistic network behavior
-- Security-first design
-- Safe environment for experimentation
-- Hands-on SOC-style workflows
+| Component        | Purpose                         |
+|------------------|----------------------------------|
+| Proxmox          | Virtualization platform           |
+| pfSense          | Central firewall & routing        |
+| Ubuntu Servers   | Linux workloads & testing         |
+| Windows Server   | Enterprise-style services         |
+| Windows Client   | User endpoint simulation          |
+| Splunk           | Centralized logging & analysis    |
 
 ---
 
-## 📌 Status
+## 🚀 Why This Lab?  
+
+This project exists to close the gap between theory and reality by providing:
+- Realistic network behavior  
+- Security-first design choices  
+- A safe space to experiment (and break things)  
+- Hands-on SOC-style workflows  
+
+---
+
+## 📌 Status  
 
 🟢 **Active / Ongoing**  
-Future enhancements include IDS/IPS, automation, and advanced detection logic.
 
----
-
+Planned enhancements include IDS/IPS, automation, and more advanced detection logic.
