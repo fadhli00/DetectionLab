@@ -1,44 +1,41 @@
 ## ⭐ Phase 2 — Gather Materials (Before Writing Anything)
 
-With the lab fully deployed and operational, this phase focuses on **capturing what already exists**.  
-Rather than rushing into documentation or publishing to GitHub, the priority here is to collect visuals and technical notes while the environment is still fresh, accurate, and unchanged.
+Once the lab was fully deployed and running the way I intended, I resisted the urge to immediately start writing documentation or pushing content to GitHub. Instead, I treated this phase as a pause—a moment to capture the environment exactly as it existed before changes, tweaks, and experiments inevitably began.
 
-This phase serves as the **raw material collection stage**—everything gathered here will later be refined into clean documentation, diagrams, and structured write-ups.
+This phase became the **raw material collection stage**. The goal wasn’t polish or presentation, but preservation. I wanted to lock in the current state of the lab while everything was still fresh, accurate, and stable, knowing that these references would later shape clean diagrams, explanations, and structured write-ups.
 
 ---
 
-### ✅ Capture Key Screenshots
+### ✅ Capturing the Lab in Its “Clean” State
 
-Screenshots are taken while the environment is still clean and stable.  
-These visuals help preserve the exact state of the lab and will later support explanations throughout the documentation.
+While the environment was still stable, I began taking screenshots to document key design and security decisions. These visuals serve as evidence of how the lab was built and how segmentation is enforced.
 
 Captured screenshots include:
 
 - Proxmox bridge configuration
 - pfSense interface assignments
-- Firewall rules demonstrating network segmentation:
+- Firewall rules demonstrating segmentation across:
   - WAN
   - LAN
   - OPT1
   - OPT2
   - OPT3
-- Virtual machines across all segments:
-  - LAN 1 — Linux systems
-  - LAN 2 — Windows Server and Windows client
-  - LAN 3 — Splunk server
-- VM list showing network placement
-- Splunk successfully receiving logs from multiple segments
+- Virtual machines deployed across all segments:
+  - **LAN 1:** Linux systems
+  - **LAN 2:** Windows Server and Windows client
+  - **LAN 3:** Splunk server
+- VM inventory showing network placement
+- Splunk actively receiving logs from multiple isolated segments
 
-These screenshots ensure that key design and security decisions are visually documented.
+These screenshots ensure that critical architectural and security choices are visually documented before any future changes are introduced.
 
 ---
 
-### ✅ Collect Technical Notes
+### ✅ Writing Notes Before They’re Forgotten
 
-Basic technical details are gathered in a simple text file or Word document.  
-The focus here is **accuracy, not polish**.
+Alongside screenshots, I kept simple technical notes—nothing fancy, just accurate. The focus here was capturing details while they were still clear in my head, not making them look good.
 
-Collected notes include:
+The notes cover:
 
 #### Network Flow
 - WAN → Modem/Router → pfSense → Proxmox → Virtual Machines
@@ -61,19 +58,18 @@ Collected notes include:
 - **LAN 3:** 192.168.4.0/24 — Splunk Server (192.168.4.10)  
 
 #### Segmentation Policy
-- LAN1, LAN2, and LAN3 are **fully isolated**
-- Allowed traffic:
+- LAN1, LAN2, and LAN3 are **fully isolated by default**
+- Explicitly allowed traffic:
   - LAN1 → Splunk (192.168.4.10)
   - LAN2 → Splunk (192.168.4.10)
   - LAN3 → Splunk (local)
 - No direct LAN-to-LAN communication permitted
 
 #### Additional Notes
-- Virtual machine names and roles
+- Virtual machine names and assigned roles
 - Firewall rule intent and reasoning
 - Log flow direction across the environment
 
-These notes do not need to be perfect.  
-They simply need to exist, as they form the **foundation for future documentation, README sections, and GitHub content**.
+These notes don’t need to be perfect—they just need to exist. They form the **foundation** for future documentation, README sections, diagrams, and GitHub content, making sure nothing important gets lost as the lab continues to evolve.
 
 ---
