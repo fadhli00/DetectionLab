@@ -1,6 +1,6 @@
 ## 🧩 Part 1 — Network Design & Topology
 
-Before deploying systems or forwarding logs, I knew the foundation had to be right. If I wanted this lab to behave like a real enterprise environment, the network design couldn’t be an afterthought. This phase was about slowing down and thinking like an engineer and a SOC analyst at the same time—*how should traffic flow, and just as importantly, what should never be allowed?*
+Before deploying systems or forwarding logs, I knew the foundation had to be right. If I wanted this lab to behave like a real enterprise environment, the network design couldn’t be an afterthought. This phase was about slowing down and thinking like an engineer and a SOC analyst at the same time*how should traffic flow, and just as importantly, what should never be allowed?*
 
 ---
 
@@ -50,7 +50,7 @@ Since everything runs on Proxmox, segmentation starts at the hypervisor level. I
 | vmbr2 | LAN 2 |
 | vmbr3 | LAN 3 |
 
-Virtual machines are connected only to the bridge that matches their intended role. This prevents accidental cross-network access and reinforces the idea that segmentation isn’t just a firewall concept—it’s layered.
+Virtual machines are connected only to the bridge that matches their intended role. This prevents accidental cross-network access and reinforces the idea that segmentation isn’t just a firewall concept it’s layered.
 
 ---
 
@@ -78,6 +78,6 @@ From the beginning, I followed a few simple rules:
 - Exceptions exist only for **centralized logging and required services**.
 - Every exception must be intentional, minimal, and traceable.
 
-This approach forces discipline and mirrors real-world environments, where visibility and control matter more than convenience. It also sets the stage for later phases—detection, logging, and investigation—by ensuring that every packet has a reason to exist.
+This approach forces discipline and mirrors real-world environments, where visibility and control matter more than convenience. It also sets the stage for later phases detection, logging, and investigation by ensuring that every packet has a reason to exist.
 
 ---
