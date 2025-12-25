@@ -30,12 +30,12 @@ To keep things realistic, I split the environment into multiple logical segments
 
 | Segment | Subnet | Purpose |
 |-------|--------|--------|
-| WAN | Provided by ISP | Internet uplink |
+| WAN | 192.168.1.0/24 | Internet uplink |
 | LAN 1 | 192.168.2.0/24 | Linux systems and baseline testing |
 | LAN 2 | 192.168.3.0/24 | Windows Server and user endpoints |
 | LAN 3 | 192.168.4.0/24 | Security tools and logging (Splunk) |
 
-Each LAN is treated as its own security zone. By default, **no LAN trusts another**. If two systems need to talk, I have to consciously allow it—and document why.
+Each LAN is treated as its own security zone. By default, **no LAN trusts another**. If two systems need to talk, I have to consciously allow it.
 
 ---
 
@@ -60,7 +60,7 @@ pfSense is configured with a dedicated interface for each network:
 
 | Interface | IP Address | Network |
 |---------|------------|---------|
-| WAN | DHCP | Internet |
+| WAN | 192.168.1.10 | Internet |
 | OPT1 | 192.168.2.1 | LAN 1 |
 | OPT2 | 192.168.3.1 | LAN 2 |
 | OPT3 | 192.168.4.1 | LAN 3 |
