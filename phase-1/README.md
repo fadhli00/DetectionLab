@@ -1,7 +1,8 @@
 ## 🧩 Part 1 — Network Design & Topology
 
+Before deploying systems or forwarding logs, I knew the foundation had to be right. If I wanted this lab to behave like a real enterprise environment, the network design couldn’t be an afterthought. This phase was about slowing down and thinking like an engineer and a SOC analyst at the same time—*how should traffic flow, and just as importantly, what should never be allowed?*
 
-### 🗺️ Topology Diagram
+---
 
 ## 🗺️ Network Topology Diagram
 
@@ -13,20 +14,19 @@
   <em>Figure 1: Segmented homelab network architecture using Proxmox, pfSense, and Splunk</em>
 </p>
 
-
-The diagram visually represents how Proxmox, pfSense, and the segmented LANs interact within the lab environment.
+The diagram represents how Proxmox, pfSense, and the segmented LANs interact within the lab. It reflects the mindset I adopted early on: **assume isolation first, then allow access only when it’s justified**.
 
 ---
 
-This homelab is designed around a **segmented network architecture** where each network segment is isolated by default and controlled through a central firewall. The goal is to mimic how networks are structured in real enterprise environments, rather than using a single flat network.
+At the heart of the design is a **segmented network architecture**, where every network is isolated by default and all communication is forced through a central control point. Rather than using a flat network for convenience, I wanted the structure to resemble what I was seeing in real client environments.
 
-At the core of the design is **pfSense**, acting as the central gateway responsible for routing, firewall enforcement, and traffic control between all network segments.
+That control point is **pfSense**, acting as the central gateway responsible for routing, firewall enforcement, and traffic control between all segments. Nothing moves between networks unless pfSense explicitly allows it.
 
 ---
 
 ### 🔐 Network Segmentation Overview
 
-The network is divided into multiple logical segments, each serving a specific role:
+To keep things realistic, I split the environment into multiple logical segments, each with a clear role:
 
 | Segment | Subnet | Purpose |
 |-------|--------|--------|
@@ -35,13 +35,13 @@ The network is divided into multiple logical segments, each serving a specific r
 | LAN 2 | 192.168.3.0/24 | Windows Server and user endpoints |
 | LAN 3 | 192.168.4.0/24 | Security tools and logging (Splunk) |
 
-Each LAN is treated as an isolated security zone. By default, **no direct communication between LANs is allowed** unless explicitly permitted by firewall rules.
+Each LAN is treated as its own security zone. By default, **no LAN trusts another**. If two systems need to talk, I have to consciously allow it—and document why.
 
 ---
 
 ### 🧱 Virtualization & Network Layout
 
-The lab is hosted on **Proxmox**, using Linux bridges to represent each network segment:
+Since everything runs on Proxmox, segmentation starts at the hypervisor level. I mapped each network segment to its own Linux bridge:
 
 | Proxmox Bridge | Connected Network |
 |--------------|------------------|
@@ -50,13 +50,13 @@ The lab is hosted on **Proxmox**, using Linux bridges to represent each network 
 | vmbr2 | LAN 2 |
 | vmbr3 | LAN 3 |
 
-Virtual machines are connected only to the bridge that corresponds to their intended network segment. This enforces segmentation at both the **hypervisor** and **firewall** layers.
+Virtual machines are connected only to the bridge that matches their intended role. This prevents accidental cross-network access and reinforces the idea that segmentation isn’t just a firewall concept—it’s layered.
 
 ---
 
 ### 🔥 pfSense Interface Design
 
-pfSense is deployed with multiple interfaces, one for each network segment:
+pfSense is configured with a dedicated interface for each network:
 
 | Interface | IP Address | Network |
 |---------|------------|---------|
@@ -65,19 +65,19 @@ pfSense is deployed with multiple interfaces, one for each network segment:
 | OPT2 | 192.168.3.1 | LAN 2 |
 | OPT3 | 192.168.4.1 | LAN 3 |
 
-pfSense serves as the **default gateway** for all internal networks and is responsible for enforcing security boundaries between them.
+Each interface acts as the default gateway for its network, making pfSense the single enforcement point for all routing and security decisions.
 
 ---
 
 ### 🔄 Traffic Flow Philosophy
 
+From the beginning, I followed a few simple rules:
+
 - Outbound internet access is allowed from all LANs.
 - Inter-LAN traffic is **blocked by default**.
-- Exceptions are made only for **centralized logging** and required services.
-- All access is controlled through explicit, documented firewall rules.
+- Exceptions exist only for **centralized logging and required services**.
+- Every exception must be intentional, minimal, and traceable.
 
-This design ensures strong isolation while still maintaining operational visibility across the environment.
+This approach forces discipline and mirrors real-world environments, where visibility and control matter more than convenience. It also sets the stage for later phases—detection, logging, and investigation—by ensuring that every packet has a reason to exist.
 
 ---
-
-
