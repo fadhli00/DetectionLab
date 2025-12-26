@@ -50,12 +50,18 @@ While the environment was still stable, I began taking screenshots to document k
 </p>
 
 **LAN 2: Windows Server and Windows client**
-<p align="center">
-  <img src="images/LAN 2.png" alt="Homelab Network Topology" width="800">
-</p>
 
 - Windows Server 2016: windows server.png  
+<p align="center">
+  <img src="images/windows server.png" alt="Homelab Network Topology" width="800">
+</p>
+
+
 - Windows 10: WINDOWS.png  
+<p align="center">
+  <img src="images/WINDOWS.png" alt="Homelab Network Topology" width="800">
+</p>
+
 
 **LAN 3: Splunk server**
 <p align="center">
