@@ -46,7 +46,7 @@ While the environment was still stable, I began taking screenshots to document k
 
 **LAN 1: Linux systems**
 <p align="center">
-  <img src="images/LAN.png" alt="Homelab Network Topology" width="800">
+  <img src="images/UBUNTU.png" alt="Homelab Network Topology" width="800">
 </p>
 
 **LAN 2: Windows Server and Windows client**
