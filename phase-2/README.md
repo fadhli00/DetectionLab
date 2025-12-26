@@ -65,7 +65,7 @@ While the environment was still stable, I began taking screenshots to document k
 
 **LAN 3: Splunk server**
 <p align="center">
-  <img src="images/LAN 3.png" alt="Homelab Network Topology" width="800">
+  <img src="images/splunk status.png" alt="Homelab Network Topology" width="800">
 </p>
 
 ---
