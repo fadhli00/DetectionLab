@@ -1,75 +1,136 @@
-## ⭐ Phase 2 — Gather Materials (Before Writing Anything)
+## Preserving the Lab in a Clean State
 
-Once the lab was fully deployed and running the way I intended, I resisted the urge to immediately start writing documentation or pushing content to GitHub. Instead, I treated this phase as a pause—a moment to capture the environment exactly as it existed before changes, tweaks, and experiments inevitably began.
+Once the lab was fully deployed and running as intended, I resisted the urge to immediately begin writing documentation or pushing content to GitHub. Instead, I treated this phase as a deliberate pause — a moment to capture the environment exactly as it existed before changes, tweaks, and experiments inevitably began.
 
-This phase became the **raw material collection stage**. The goal wasn’t polish or presentation, but preservation. I wanted to lock in the current state of the lab while everything was still fresh, accurate, and stable, knowing that these references would later shape clean diagrams, explanations, and structured write-ups.
+This phase became the **raw material collection stage**. The goal wasn’t polish or presentation, but preservation. I wanted to lock in the current state of the lab while everything was still fresh, accurate, and stable, knowing these references would later shape clean diagrams, explanations, and structured write-ups.
 
 ---
 
-### ✅ Capturing the Lab in Its “Clean” State
+## ✅ Capturing the Lab in Its “Clean” State
 
 While the environment was still stable, I began taking screenshots to document key design and security decisions. These visuals serve as evidence of how the lab was built and how segmentation is enforced.
 
-Captured screenshots include:
+### Proxmox Configuration
 
 - Proxmox bridge configuration
-- pfSense interface assignments
-- Firewall rules demonstrating segmentation across:
-  - WAN
-  - LAN
-  - OPT1
-  - OPT2
-  - OPT3
-- Virtual machines deployed across all segments:
-  - **LAN 1:** Linux systems
-  - **LAN 2:** Windows Server and Windows client
-  - **LAN 3:** Splunk server
-- VM inventory showing network placement
-- Splunk actively receiving logs from multiple isolated segments
 
-These screenshots ensure that critical architectural and security choices are visually documented before any future changes are introduced.
+<p align="center">
+  <img src="images/networkbridge.png" alt="Proxmox Network Bridge Configuration" width="800">
+</p>
 
 ---
 
-### ✅ Writing Notes Before They’re Forgotten
+### pfSense Interface Assignments
 
-Alongside screenshots, I kept simple technical notes—nothing fancy, just accurate. The focus here was capturing details while they were still clear in my head, not making them look good.
+- WAN Interface
 
-The notes cover:
+<p align="center">
+  <img src="images/WAN.png" alt="pfSense WAN Interface" width="800">
+</p>
 
-#### Network Flow
+- LAN Interface
+
+<p align="center">
+  <img src="images/LAN.png" alt="pfSense LAN Interface" width="800">
+</p>
+
+- OPT1 Interface
+
+<p align="center">
+  <img src="images/OPT1.png" alt="pfSense OPT1 Interface" width="800">
+</p>
+
+- OPT2 Interface
+
+<p align="center">
+  <img src="images/OPT2.png" alt="pfSense OPT2 Interface" width="800">
+</p>
+
+---
+
+### Virtual Machines Across Segments
+
+#### LAN 1 – Linux Systems
+
+<p align="center">
+  <img src="images/LAN.png" alt="LAN 1 Linux Systems" width="800">
+</p>
+
+---
+
+#### LAN 2 – Windows Environment
+
+- Windows Server 2016  
+- Windows 10 Client  
+
+<p align="center">
+  <img src="images/LAN 2.png" alt="LAN 2 Windows Environment" width="800">
+</p>
+
+---
+
+#### LAN 3 – Splunk Server
+
+<p align="center">
+  <img src="images/LAN 3.png" alt="LAN 3 Splunk Server" width="800">
+</p>
+
+---
+
+### Splunk Logging & Forwarders
+
+- Splunk actively receiving logs from multiple isolated segments
+- Data retention threshold set to **2 days**
+  - Suitable for a homelab
+  - **Not recommended for enterprise environments**
+
+#### Linux Server Splunk Forwarder
+
+<p align="center">
+  <img src="images/server splunk forwarder.png" alt="Linux Splunk Forwarder" width="800">
+</p>
+
+#### Windows Splunk Forwarder
+
+<p align="center">
+  <img src="images/windows splunk forwarder.png" alt="Windows Splunk Forwarder" width="800">
+</p>
+
+#### Splunk Web UI
+
+<p align="center">
+  <img src="images/splunk ui.png" alt="Splunk Web Interface" width="800">
+</p>
+
+---
+
+These screenshots ensure that critical architectural and security decisions are visually documented before any future changes are introduced.
+
+---
+
+## ✅ Writing Notes Before They’re Forgotten
+
+Alongside screenshots, I kept simple technical notes — nothing fancy, just accurate. The focus was capturing details while they were still clear, not making them look polished.
+
+### Network Flow
+
 - WAN → Modem/Router → pfSense → Proxmox → Virtual Machines
 
-#### Proxmox Bridges
-- `vmbr0` — WAN  
-- `vmbr1` — LAN 1  
-- `vmbr2` — LAN 2  
-- `vmbr3` — LAN 3  
+---
 
-#### pfSense Interfaces
-- WAN — DHCP from ISP  
-- OPT1 — 192.168.2.1  
-- OPT2 — 192.168.3.1  
-- OPT3 — 192.168.4.1  
+### Segmentation Policy
 
-#### Network Segments & VMs
-- **LAN 1:** 192.168.2.0/24 — Ubuntu VM  
-- **LAN 2:** 192.168.3.0/24 — Windows Server + Windows 10  
-- **LAN 3:** 192.168.4.0/24 — Splunk Server (192.168.4.10)  
-
-#### Segmentation Policy
-- LAN1, LAN2, and LAN3 are **fully isolated by default**
+- LAN1, LAN2, and LAN3 are fully isolated by default
 - Explicitly allowed traffic:
-  - LAN1 → Splunk (192.168.4.10)
-  - LAN2 → Splunk (192.168.4.10)
+  - LAN1 → Splunk (`192.168.4.10`)
+  - LAN2 → Splunk (`192.168.4.10`)
   - LAN3 → Splunk (local)
 - No direct LAN-to-LAN communication permitted
 
-#### Additional Notes
+---
+
+### Additional Notes
+
 - Virtual machine names and assigned roles
 - Firewall rule intent and reasoning
 - Log flow direction across the environment
-
-These notes don’t need to be perfect—they just need to exist. They form the **foundation** for future documentation, README sections, diagrams, and GitHub content, making sure nothing important gets lost as the lab continues to evolve.
-
----
