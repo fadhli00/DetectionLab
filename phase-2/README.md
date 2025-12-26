@@ -8,69 +8,78 @@ This phase became the raw material collection stage. The goal wasn’t polish or
 
 While the environment was still stable, I began taking screenshots to document key design and security decisions. These visuals serve as evidence of how the lab was built and how segmentation is enforced.
 
-Captured screenshots include:
+### Captured Screenshots
 
-- Proxmox bridge configuration  
+#### Proxmox
+- **Proxmox bridge configuration**
 <p align="center">
   <img src="images/networkbridge.png" alt="Homelab Network Topology" width="800">
 </p>
 
-- pfSense interface assignments  
-- Firewall rules segmentation across:
-  - Proxmox bridge configuration  
+#### pfSense
+- **Interface assignments**
+- **Firewall rules segmentation**
+
+**WAN**
 <p align="center">
   <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-- WAN  
-- LAN LAN.png  
+**LAN**
 <p align="center">
   <img src="images/LAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-- OPT1 OPT1.png  
+**OPT1**
 <p align="center">
   <img src="images/OPT1.png" alt="Homelab Network Topology" width="800">
 </p>
 
-- OPT2 OPT2.png  
+**OPT2**
 <p align="center">
   <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-- Virtual machines deployed across all segments:
-  - LAN 1: Linux systems LAN.png  
+---
+
+### Virtual Machines Deployed Across All Segments
+
+**LAN 1: Linux systems**
 <p align="center">
   <img src="images/LAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-  - LAN 2: Windows Server and Windows client  
+**LAN 2: Windows Server and Windows client**
 <p align="center">
   <img src="images/LAN 2.png" alt="Homelab Network Topology" width="800">
 </p>
 
-  - Windows Server 2016: windows server.png  
-  - Windows 10: WINDOWS.png  
+- Windows Server 2016: windows server.png  
+- Windows 10: WINDOWS.png  
 
-  - LAN 3: Splunk server  
+**LAN 3: Splunk server**
 <p align="center">
   <img src="images/LAN 3.png" alt="Homelab Network Topology" width="800">
 </p>
 
+---
+
+### Splunk Logging
+
 - Splunk actively receiving logs from multiple isolated segments  
 - I set the treshold for data rentention of splunk keeping the logs for two days. For this homelab that threshold Is good enough for my environment. But for the enterprise that is not a good practise.  
 
-- server splunk forwarder.png  
+**Server Splunk Forwarder**
 <p align="center">
   <img src="images/server splunk forwarder.png" alt="Homelab Network Topology" width="800">
 </p>
 
+**Windows Splunk Forwarder**
 <p align="center">
   <img src="images/windows splunk forwarder.png " alt="Homelab Network Topology" width="800">
 </p>
 
-- windows splunk forwarder.png  
-- splunk ui.png  
+**Splunk UI**
 <p align="center">
   <img src="images/splunk ui.png" alt="Homelab Network Topology" width="800">
 </p>
@@ -82,8 +91,6 @@ These screenshots ensure that critical architectural and security choices are vi
 ## ✅ Writing Notes Before They’re Forgotten
 
 Alongside screenshots, I kept simple technical notes nothing fancy, just accurate. The focus here was capturing details while they were still clear in my head, not making them look good.
-
-The notes cover:
 
 ### Network Flow
 - WAN → Modem/Router → pfSense → Proxmox → Virtual Machines
