@@ -38,16 +38,16 @@ Advanced features are introduced progressively across project phases.
 
 Each part of the project is documented separately to keep things clean, modular, and easy to follow:
 
-🔹 **[Part 1 — Network Design & Topology](phase-1/README.md)**  
+🔹 **[Part 1 — Network Design & Topology](Part-1/README.md)**  
 High-level architecture, segmentation strategy, and topology overview.
 
-🔹 **[Part 2 — Gather Materials](phase-2/README.md)**  
+🔹 **[Part 2 — Gather Materials](Part-2/README.md)**  
 Capturing diagrams, screenshots, and technical notes before formal documentation.
 
-🔹 **[Part 3 — Security & Centralized Logging](phase-3/README.md)**  
+🔹 **[Part 3 — Security & Centralized Logging](Part-3/README.md)**  
 Firewall rules, log forwarding, and centralized visibility using Splunk.
 
-🔹 **[Part 4 — Outcomes & Next Steps](phase-4/README.md)**  
+🔹 **[Part 4 — Outcomes & Next Steps](Part-4/README.md)**  
 Lessons learned, challenges, results, and future improvements.
 
 ---
