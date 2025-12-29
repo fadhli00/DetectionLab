@@ -90,12 +90,35 @@ Although LAN 1 has broader access by design, **logging traffic remains explicitl
 | LAN3 | Local | N/A | Allow | Local log processing |
 
 All other inter-LAN services remain blocked unless explicitly required and documented.
-
-> 📸 **Screenshot Required:**  
-> - pfSense rule allowing LAN1 → Splunk  
-> - pfSense rule allowing LAN2 → Splunk  
+> 📸 **Logging Exception Rules — Visual Evidence**  
+> The following screenshots show the explicit firewall rules permitting log traffic to the Splunk server.
 
 ---
+
+### 🔓 LAN 1 → Splunk (Port 9997)
+
+<p align="center">
+  <img src="images/LAN 1 TO 9997.png" alt="pfSense rule allowing LAN 1 to send logs to Splunk" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 4: pfSense rule allowing LAN 1 systems to forward logs to Splunk on port 9997</em>
+</p>
+
+---
+
+### 🔓 LAN 2 → Splunk (Port 9997)
+
+<p align="center">
+  <img src="images/LAN 2 TO 9997.png" alt="pfSense rule allowing LAN 2 to send logs to Splunk" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 5: pfSense rule allowing LAN 2 systems to forward logs to Splunk on port 9997</em>
+</p>
+
+---
+
 
 ## 📊 Centralized Logging Architecture
 
