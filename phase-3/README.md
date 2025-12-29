@@ -98,7 +98,7 @@ All other inter-LAN services remain blocked unless explicitly required and docum
 ### 🔓 LAN 1 → Splunk (Port 9997)
 
 <p align="center">
-  <img src="images/LAN 1 TO 9997.png" alt="pfSense rule allowing LAN 1 to send logs to Splunk" width="800">
+  <img src="images/LAN 1 to 9997.png" alt="pfSense rule allowing LAN 1 to send logs to Splunk" width="800">
 </p>
 
 <p align="center">
@@ -110,7 +110,7 @@ All other inter-LAN services remain blocked unless explicitly required and docum
 ### 🔓 LAN 2 → Splunk (Port 9997)
 
 <p align="center">
-  <img src="images/LAN 2 TO 9997.png" alt="pfSense rule allowing LAN 2 to send logs to Splunk" width="800">
+  <img src="images/LAN 2 to 9997.png" alt="pfSense rule allowing LAN 2 to send logs to Splunk" width="800">
 </p>
 
 <p align="center">
