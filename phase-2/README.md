@@ -1,115 +1,84 @@
-Once the lab was fully deployed and running the way I intended, I resisted the urge to immediately start writing documentation or pushing content to GitHub. Instead, I treated this phase as a pause a moment to capture the environment exactly as it existed before changes, tweaks, and experiments inevitably began.
+[## 🧩 Part 2 — Network Design & Topology
 
-This phase became the raw material collection stage. The goal wasn’t polish or presentation, but preservation. I wanted to lock in the current state of the lab while everything was still fresh, accurate, and stable, knowing that these references would later shape clean diagrams, explanations, and structured write-ups.
-
----
-
-## ✅ Capturing the Lab in Its “Clean” State
-
-While the environment was still stable, I began taking screenshots to document key design and security decisions. These visuals serve as evidence of how the lab was built and how segmentation is enforced.
-
-### Captured Screenshots
-
-#### Proxmox
-- **Proxmox bridge configuration**
-<p align="center">
-  <img src="images/networkbridge.png" alt="Homelab Network Topology" width="800">
-</p>
-
-#### pfSense
-- **Interface assignments**
-- **Firewall rules segmentation**
-
-**WAN**
-<p align="center">
-  <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
-</p>
-
-**LAN**
-<p align="center">
-  <img src="images/LAN.png" alt="Homelab Network Topology" width="800">
-</p>
-
-**OPT1**
-<p align="center">
-  <img src="images/OPT1.png" alt="Homelab Network Topology" width="800">
-</p>
-
-**OPT2**
-<p align="center">
-  <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
-</p>
+Before deploying systems or forwarding logs, I knew the foundation had to be right. If I wanted this lab to behave like a real enterprise environment, the network design couldn’t be an afterthought. This phase was about slowing down and thinking like an engineer and a SOC analyst at the same time*how should traffic flow, and just as importantly, what should never be allowed?*
 
 ---
 
-### Virtual Machines Deployed Across All Segments
+## 🗺️ Network Topology Diagram
 
-**LAN 1: Linux systems**
 <p align="center">
-  <img src="images/UBUNTU.png" alt="Homelab Network Topology" width="800">
+  <img src="images/Homelab.drawio.png" alt="Homelab Network Topology" width="800">
 </p>
 
-**LAN 2: Windows Server and Windows client**
-
-- Windows Server 2016: windows server.png  
 <p align="center">
-  <img src="images/windows server.png" alt="Homelab Network Topology" width="800">
+  <em>Figure 1: Segmented homelab network architecture using Proxmox, pfSense, and Splunk</em>
 </p>
 
-
-- Windows 10: WINDOWS.png  
-<p align="center">
-  <img src="images/WINDOWS.png" alt="Homelab Network Topology" width="800">
-</p>
-
-
-**LAN 3: Splunk server**
-<p align="center">
-  <img src="images/splunk status.png" alt="Homelab Network Topology" width="800">
-</p>
+The diagram represents how Proxmox, pfSense, and the segmented LANs interact within the lab. It reflects the mindset I adopted early on: **assume isolation first, then allow access only when it’s justified**.
 
 ---
 
-### Splunk Logging
+At the heart of the design is a **segmented network architecture**, where every network is isolated by default and all communication is forced through a central control point. Rather than using a flat network for convenience, I wanted the structure to resemble what I was seeing in real client environments.
 
-- Splunk actively receiving logs from multiple isolated segments  
-- I set the treshold for data rentention of splunk keeping the logs for two days. For this homelab that threshold Is good enough for my environment. But for the enterprise that is not a good practise.  
-
-**Server Splunk Forwarder**
-<p align="center">
-  <img src="images/server splunk forwarder.png" alt="Homelab Network Topology" width="800">
-</p>
-
-**Windows Splunk Forwarder**
-<p align="center">
-  <img src="images/windows splunk forwarder.png " alt="Homelab Network Topology" width="800">
-</p>
-
-**Splunk UI**
-<p align="center">
-  <img src="images/splunk ui.png" alt="Homelab Network Topology" width="800">
-</p>
-
-These screenshots ensure that critical architectural and security choices are visually documented before any future changes are introduced.
+That control point is **pfSense**, acting as the central gateway responsible for routing, firewall enforcement, and traffic control between all segments. Nothing moves between networks unless pfSense explicitly allows it.
 
 ---
 
-## ✅ Writing Notes Before They’re Forgotten
+### 🔐 Network Segmentation Overview
 
-Alongside screenshots, I kept simple technical notes nothing fancy, just accurate. The focus here was capturing details while they were still clear in my head, not making them look good.
+To keep things realistic, I split the environment into multiple logical segments, each with a clear role:
 
-### Network Flow
-- WAN → Modem/Router → pfSense → Proxmox → Virtual Machines
+| Segment | Subnet | Purpose |
+|-------|--------|--------|
+| WAN | 192.168.1.0/24 | Internet uplink |
+| LAN 1 | 192.168.2.0/24 | Linux systems and baseline testing |
+| LAN 2 | 192.168.3.0/24 | Windows Server and user endpoints |
+| LAN 3 | 192.168.4.0/24 | Security tools and logging (Splunk) |
 
-### Segmentation Policy
-- LAN1, LAN2, and LAN3 are fully isolated by default
-- Explicitly allowed traffic:
-  - LAN1 → Splunk (192.168.4.10)
-  - LAN2 → Splunk (192.168.4.10)
-  - LAN3 → Splunk (local)
-- No direct LAN-to-LAN communication permitted
+Each LAN is treated as its own security zone. By default, **no LAN trusts another**. If two systems need to talk, I have to consciously allow it.
 
-### Additional Notes
-- Virtual machine names and assigned roles
-- Firewall rule intent and reasoning
-- Log flow direction across the environment
+---
+
+### 🧱 Virtualization & Network Layout
+
+Since everything runs on Proxmox, segmentation starts at the hypervisor level. I mapped each network segment to its own Linux bridge:
+
+| Proxmox Bridge | Connected Network |
+|--------------|------------------|
+| vmbr0 | WAN |
+| vmbr1 | LAN 1 |
+| vmbr2 | LAN 2 |
+| vmbr3 | LAN 3 |
+
+Virtual machines are connected only to the bridge that matches their intended role. This prevents accidental cross-network access and reinforces the idea that segmentation isn’t just a firewall concept it’s layered.
+
+---
+
+### 🔥 pfSense Interface Design
+
+pfSense is configured with a dedicated interface for each network:
+
+| Interface | IP Address | Network |
+|---------|------------|---------|
+| WAN | 192.168.1.10 | Internet |
+| OPT1 | 192.168.2.1 | LAN 1 |
+| OPT2 | 192.168.3.1 | LAN 2 |
+| OPT3 | 192.168.4.1 | LAN 3 |
+
+Each interface acts as the default gateway for its network, making pfSense the single enforcement point for all routing and security decisions.
+
+---
+
+### 🔄 Traffic Flow Philosophy
+
+From the beginning, I followed a few simple rules:
+
+- Outbound internet access is allowed from all LANs.
+- Inter-LAN traffic is **blocked by default**.
+- Exceptions exist only for **centralized logging and required services**.
+- Every exception must be intentional, minimal, and traceable.
+
+This approach forces discipline and mirrors real-world environments, where visibility and control matter more than convenience. It also sets the stage for later phases detection, logging, and investigation by ensuring that every packet has a reason to exist.
+
+---
+](https://github.com/fadhli00/DetectionLab/tree/main)
