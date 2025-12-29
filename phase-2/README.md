@@ -37,7 +37,7 @@ While the environment was still stable, I began taking screenshots to document k
 
 **OPT2**
 <p align="center">
-  <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
+  <img src="images/OPT2.png" alt="Homelab Network Topology" width="800">
 </p>
 
 ---
@@ -51,13 +51,13 @@ While the environment was still stable, I began taking screenshots to document k
 
 **LAN 2: Windows Server and Windows client**
 
-- Windows Server 2016: windows server.png  
+- Windows Server 2016: windows server 
 <p align="center">
   <img src="images/windows server.png" alt="Homelab Network Topology" width="800">
 </p>
 
 
-- Windows 10: WINDOWS.png  
+- Windows 10: WINDOWS  
 <p align="center">
   <img src="images/WINDOWS.png" alt="Homelab Network Topology" width="800">
 </p>
