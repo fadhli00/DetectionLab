@@ -152,7 +152,7 @@ Log flows are intentionally unidirectional and minimal.
 - Serves as the central analysis and investigation point
 
 <p align="center">
-  <img src="images/splunk-receive-9997.png" alt="Splunk input configuration with port 9997 enabled" width="800">
+  <img src="images/Splunk receive 9997.png" alt="Splunk input configuration with port 9997 enabled" width="800">
 </p>
 
 <p align="center">
@@ -162,7 +162,7 @@ Log flows are intentionally unidirectional and minimal.
 ---
 
 <p align="center">
-  <img src="images/splunk-with-hosts.png" alt="Splunk UI displaying events from multiple hosts" width="800">
+  <img src="images/splunk with hosts.png" alt="Splunk UI displaying events from multiple hosts" width="800">
 </p>
 
 <p align="center">
