@@ -79,6 +79,6 @@ It serves as a long-term learning platform rather than a one-time build.
 
 ---
 
-⬅️ **Previous:** [Part 3 — Security Controls & Log Flow](../phase-3/README.md)  
+⬅️ **Previous:** [Part 3 — Security Controls & Log Flow](../Part-3/README.md)  
 🏠 **Back to:** [Main Project Overview](../README.md)
 
