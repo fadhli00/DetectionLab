@@ -113,3 +113,9 @@ Alongside screenshots, I kept simple technical notes nothing fancy, just accurat
 - Virtual machine names and assigned roles
 - Firewall rule intent and reasoning
 - Log flow direction across the environment
+
+---
+
+⬅️ **Previous:** [Part 1 — Network Design & Topology](../phase-1/README.md)  
+➡️ **Next:** [Part 3 — Security Controls & Log Flow](../phase-3/README.md)
+
