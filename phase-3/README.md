@@ -49,7 +49,7 @@ LAN 1 is intentionally configured with broader access to support testing and exp
 ### 🔐 LAN 2 — Windows Environment Isolation
 
 <p align="center">
-  <img src="images/LAN 2 Blocking Rules.png" alt="pfSense LAN 2 firewall rules" width="800">
+  <img src="images/LAN2 Blocking Rules.png" alt="pfSense LAN 2 firewall rules" width="800">
 </p>
 
 <p align="center">
