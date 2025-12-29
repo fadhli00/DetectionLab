@@ -151,9 +151,24 @@ Log flows are intentionally unidirectional and minimal.
 - Receives logs from LAN 1 and LAN 2
 - Serves as the central analysis and investigation point
 
-> 📸 **Screenshot Required:**  
-> - Splunk input configuration (port 9997 enabled)  
-> - Splunk UI showing events from multiple hosts  
+<p align="center">
+  <img src="images/splunk-receive-9997.png" alt="Splunk input configuration with port 9997 enabled" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 6: Splunk input configuration showing port 9997 enabled for log ingestion</em>
+</p>
+
+---
+
+<p align="center">
+  <img src="images/splunk-with-hosts.png" alt="Splunk UI displaying events from multiple hosts" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 7: Splunk UI showing events received from multiple isolated hosts</em>
+</p>
+
 
 ---
 
