@@ -81,3 +81,7 @@ From the beginning, I followed a few simple rules:
 This approach forces discipline and mirrors real-world environments, where visibility and control matter more than convenience. It also sets the stage for later phases detection, logging, and investigation by ensuring that every packet has a reason to exist.
 
 ---
+---
+
+⬅️ **Previous:** [Main Project Overview](../README.md)  
+➡️ **Next:** [Part 2 — Environment Capture & Baseline](../phase-2/README.md)
