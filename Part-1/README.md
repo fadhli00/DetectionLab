@@ -84,4 +84,4 @@ This approach forces discipline and mirrors real-world environments, where visib
 ---
 
 ⬅️ **Previous:** [Main Project Overview](../README.md)  
-➡️ **Next:** [Part 2 — Environment Capture & Baseline](../phase-2/README.md)
+➡️ **Next:** [Part 2 — Environment Capture & Baseline](../Part-2/README.md)
