@@ -196,5 +196,5 @@ This phase establishes the foundation required for SOC-style detection and respo
 This ensures the environment remains controlled, observable, and aligned with real-world defensive practices.
 ---
 
-⬅️ **Previous:** [Part 2 — Environment Capture & Baseline](../phase-2/README.md)  
-➡️ **Next:** [Part 4 — Outcomes & Next Steps](../phase-4/README.md)
+⬅️ **Previous:** [Part 2 — Environment Capture & Baseline](../Part-2/README.md)  
+➡️ **Next:** [Part 4 — Outcomes & Next Steps](../Part-4/README.md)
