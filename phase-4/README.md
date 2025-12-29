@@ -78,3 +78,7 @@ This homelab will continue to evolve as new security concepts and tools are intr
 It serves as a long-term learning platform rather than a one-time build.
 
 ---
+
+⬅️ **Previous:** [Part 3 — Security Controls & Log Flow](../phase-3/README.md)  
+🏠 **Back to:** [Main Project Overview](../README.md)
+
