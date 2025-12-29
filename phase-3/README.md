@@ -1,7 +1,8 @@
-## 🔐 Part 3 — Security & Centralized Logging
+## 🔐 Part 3 — Security Controls, Segmentation Enforcement & Log Flow
 
-This phase focuses on enforcing **strict network segmentation** and establishing **centralized visibility** across the entire lab.  
-The environment is designed with a **deny-by-default** mindset, where every allowed connection is intentional, documented, and logged.
+With the environment deployed and captured in a known-good state, the next step was to ensure that the network behaved exactly as intended. From a SOC perspective, architecture alone has no value unless security controls are consistently enforced and observable.
+
+This phase focuses on how segmentation is applied, how exceptions are deliberately introduced, and how visibility is maintained across all isolated segments.
 
 ---
 
