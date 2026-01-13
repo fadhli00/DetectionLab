@@ -1,6 +1,3 @@
-Once the lab was fully deployed and running the way I intended, I resisted the urge to immediately start writing documentation or pushing content to GitHub. Instead, I treated this phase as a pause a moment to capture the environment exactly as it existed before changes, tweaks, and experiments inevitably began.
-
-This phase became the raw material collection stage. The goal wasn’t polish or presentation, but preservation. I wanted to lock in the current state of the lab while everything was still fresh, accurate, and stable, knowing that these references would later shape clean diagrams, explanations, and structured write-ups.
 
 ---
 
