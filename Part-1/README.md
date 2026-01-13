@@ -61,9 +61,9 @@ pfSense is configured with a dedicated interface for each network:
 | Interface | IP Address | Network |
 |---------|------------|---------|
 | WAN | 192.168.1.10 | Internet |
-| OPT1 | 192.168.2.1 | LAN 1 |
-| OPT2 | 192.168.3.1 | LAN 2 |
-| OPT3 | 192.168.4.1 | LAN 3 |
+| LAN 1 | 192.168.2.1 | LAN 1 |
+| LAN 2 | 192.168.3.1 | LAN 2 |
+| LAN 3 | 192.168.4.1 | LAN 3 |
 
 Each interface acts as the default gateway for its network, making pfSense the single enforcement point for all routing and security decisions.
 
