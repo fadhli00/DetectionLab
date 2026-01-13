@@ -25,17 +25,17 @@ While the environment was still stable, I began taking screenshots to document k
   <img src="images/WAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-**LAN**
+**LAN1**
 <p align="center">
   <img src="images/LAN.png" alt="Homelab Network Topology" width="800">
 </p>
 
-**OPT1**
+**LAN2**
 <p align="center">
   <img src="images/OPT1.png" alt="Homelab Network Topology" width="800">
 </p>
 
-**OPT2**
+**LAN3**
 <p align="center">
   <img src="images/OPT2.png" alt="Homelab Network Topology" width="800">
 </p>
