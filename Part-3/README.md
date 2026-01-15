@@ -74,11 +74,6 @@ LAN 3 is treated as a protected security zone. It accepts inbound logging traffi
 
 ---
 
-
-
-
----
-
 ## 🔓 Logging Exception Rules (Explicit Allow)
 
 Although LAN 1 has broader access by design, **logging traffic remains explicitly defined and controlled** to preserve visibility and prevent unnecessary exposure.
@@ -90,6 +85,7 @@ Although LAN 1 has broader access by design, **logging traffic remains explicitl
 | LAN3 | Local | N/A | Allow | Local log processing |
 
 All other inter-LAN services remain blocked unless explicitly required and documented.
+
 > 📸 **Logging Exception Rules — Visual Evidence**  
 > The following screenshots show the explicit firewall rules permitting log traffic to the Splunk server.
 
@@ -119,7 +115,6 @@ All other inter-LAN services remain blocked unless explicitly required and docum
 
 ---
 
-
 ## 📊 Centralized Logging Architecture
 
 All systems forward logs to a **dedicated Splunk server located in LAN 3 (192.168.4.10)**.  
@@ -131,6 +126,91 @@ Splunk is responsible for:
 - Indexing and storage
 - Event correlation
 - Detection and alerting (future phase)
+
+---
+
+## 🛡️ Endpoint Detection & Response (EDR) — LimaCharlie Integration
+
+To complement centralized logging and strengthen endpoint visibility, **LimaCharlie EDR** was deployed within the vulnerable Windows environment in **LAN 2**. While Splunk provides log aggregation and correlation, LimaCharlie introduces **real-time endpoint telemetry and detection capabilities** at the host level.
+
+This layered approach mirrors enterprise security architectures where **SIEM and EDR operate together**, each serving a distinct but complementary role.
+
+---
+
+### 🎯 EDR Deployment Scope
+
+LimaCharlie agents are installed on selected Windows systems within the **victim network (LAN 2 — 192.168.3.0/24)**.
+
+Deployment characteristics:
+
+- Agent-based EDR on Windows endpoints  
+- Outbound-only communication to LimaCharlie cloud services  
+- No inbound connections required  
+- Does not introduce additional inter-LAN trust  
+
+> 📸 **Screenshot Required:**  
+> - LimaCharlie agent successfully installed and online  
+> - Endpoint visible and reporting in the LimaCharlie console  
+
+---
+
+### 🔐 Network & Segmentation Considerations
+
+LimaCharlie was intentionally designed to **respect existing segmentation controls**:
+
+- Agents communicate **directly to the internet**  
+- Traffic flows through pfSense using standard outbound rules  
+- No direct communication with Splunk or other LANs  
+- No inbound firewall exceptions required  
+
+This ensures that introducing EDR **does not weaken isolation boundaries** or create lateral movement paths.
+
+> 📸 **Optional Screenshot:**  
+> - pfSense outbound rule permitting LAN 2 internet access (already existing)  
+
+---
+
+### 🔄 Telemetry & Visibility Model
+
+With LimaCharlie in place, the lab now supports **dual visibility layers**:
+
+| Tool | Visibility Type | Purpose |
+|----|----|----|
+| Splunk | Centralized logs | Aggregation, correlation, investigations |
+| LimaCharlie | Endpoint telemetry | Real-time detection, process activity, host behavior |
+
+LimaCharlie provides insight into:
+
+- Process creation and execution  
+- Network connections initiated by endpoints  
+- File system and registry activity  
+- Security-relevant host behavior  
+
+Splunk remains the **primary investigation platform**, while LimaCharlie acts as an **early detection and validation layer**.
+
+---
+
+### 🔍 SOC Use Case Alignment
+
+This integration enables realistic SOC workflows, including:
+
+- Detecting suspicious activity at the endpoint (EDR)  
+- Correlating endpoint behavior with network and system logs (SIEM)  
+- Validating blocked lateral movement attempts  
+- Supporting future incident response and attack simulation phases  
+
+> 📸 **Screenshot Required:**  
+> - LimaCharlie detection or telemetry view  
+> - Example endpoint event (non-sensitive)  
+
+---
+
+### 🧠 Design Rationale
+
+- EDR provides **host-level context** that logs alone cannot  
+- Cloud-based EDR avoids expanding internal trust zones  
+- Separation of SIEM and EDR reflects real-world deployments  
+- Enhances detection readiness without compromising segmentation  
 
 ---
 
@@ -169,7 +249,6 @@ Log flows are intentionally unidirectional and minimal.
   <em>Figure 7: Splunk UI showing events received from multiple isolated hosts</em>
 </p>
 
-
 ---
 
 ## 🔍 Security Visibility & Monitoring
@@ -194,6 +273,7 @@ This phase establishes the foundation required for SOC-style detection and respo
 - Document the intent behind every exception
 
 This ensures the environment remains controlled, observable, and aligned with real-world defensive practices.
+
 ---
 
 ⬅️ **Previous:** [Part 2 — Environment Capture & Baseline](../Part-2/README.md)  
