@@ -106,7 +106,7 @@ All other inter-LAN services remain blocked unless explicitly required and docum
 ### 🔓 LAN 2 → Splunk (Port 9997)
 
 <p align="center">
-  <img src="images/LAN 2 to 9997.png" alt="pfSense rule allowing LAN 2 to send logs to Splunk" width="800">
+  <img src="images/LAN 2 to 9997.png" alt="pfSense rule allowing LAN 2 systems to forward logs to Splunk" width="800">
 </p>
 
 <p align="center">
@@ -137,36 +137,25 @@ This layered approach mirrors enterprise security architectures where **SIEM and
 
 ---
 
-### 🎯 EDR Deployment Scope
+### 🎯 EDR Deployment
 
 LimaCharlie agents are installed on selected Windows systems within the **victim network (LAN 2 — 192.168.3.0/24)**.
 
-Deployment characteristics:
+<p align="center">
+  <img src="images/edr2.png" width="800">
+</p>
 
-- Agent-based EDR on Windows endpoints  
-- Outbound-only communication to LimaCharlie cloud services  
-- No inbound connections required  
-- Does not introduce additional inter-LAN trust  
+<p align="center">
+  <em>Figure 6: LimaCharlie service successfully installed and running</em>
+</p>
 
-> 📸 **Screenshot Required:**  
-> - LimaCharlie agent successfully installed and online  
-> - Endpoint visible and reporting in the LimaCharlie console  
+<p align="center">
+  <img src="images/edr1.png" width="800">
+</p>
 
----
-
-### 🔐 Network & Segmentation Considerations
-
-LimaCharlie was intentionally designed to **respect existing segmentation controls**:
-
-- Agents communicate **directly to the internet**  
-- Traffic flows through pfSense using standard outbound rules  
-- No direct communication with Splunk or other LANs  
-- No inbound firewall exceptions required  
-
-This ensures that introducing EDR **does not weaken isolation boundaries** or create lateral movement paths.
-
-> 📸 **Optional Screenshot:**  
-> - pfSense outbound rule permitting LAN 2 internet access (already existing)  
+<p align="center">
+  <em>Figure 7: Endpoint visible and reporting in the LimaCharlie console</em>
+</p>
 
 ---
 
@@ -179,19 +168,6 @@ With LimaCharlie in place, the lab now supports **dual visibility layers**:
 | Splunk | Centralized logs | Aggregation, correlation, investigations |
 | LimaCharlie | Endpoint telemetry | Real-time detection, process activity, host behavior |
 
-LimaCharlie provides insight into:
-
-- Process creation and execution  
-- Network connections initiated by endpoints  
-- File system and registry activity  
-- Security-relevant host behavior  
-
-Splunk remains the **primary investigation platform**, while LimaCharlie acts as an **early detection and validation layer**.
-
----
-
-### 🔍 SOC Use Case Alignment
-
 This integration enables realistic SOC workflows, including:
 
 - Detecting suspicious activity at the endpoint (EDR)  
@@ -199,9 +175,13 @@ This integration enables realistic SOC workflows, including:
 - Validating blocked lateral movement attempts  
 - Supporting future incident response and attack simulation phases  
 
-> 📸 **Screenshot Required:**  
-> - LimaCharlie detection or telemetry view  
-> - Example endpoint event (non-sensitive)  
+<p align="center">
+  <img src="images/edr3.png" width="800">
+</p>
+
+<p align="center">
+  <em>Figure 8: LimaCharlie detection or telemetry view</em>
+</p>
 
 ---
 
@@ -236,7 +216,7 @@ Log flows are intentionally unidirectional and minimal.
 </p>
 
 <p align="center">
-  <em>Figure 6: Splunk input configuration showing port 9997 enabled for log ingestion</em>
+  <em>Figure 9: Splunk input configuration showing port 9997 enabled for log ingestion</em>
 </p>
 
 ---
@@ -246,7 +226,7 @@ Log flows are intentionally unidirectional and minimal.
 </p>
 
 <p align="center">
-  <em>Figure 7: Splunk UI showing events received from multiple isolated hosts</em>
+  <em>Figure 10: Splunk UI showing events received from multiple isolated hosts</em>
 </p>
 
 ---
