@@ -7,7 +7,7 @@ Before deploying systems or forwarding logs, I knew the foundation had to be rig
 ## 🗺️ Network Topology Diagram
 
 <p align="center">
-  <img src="images/Homelab.drawio.png" alt="Homelab Network Topology" width="800">
+  <img src="images/Homelab.drawioo.png" alt="Homelab Network Topology" width="800">
 </p>
 
 <p align="center">
